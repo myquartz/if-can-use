@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>jCanUse Test</title>
+</head>
+<body>
+<p id="message"></p>
+<form>
+Time: <input type="time"><br>
+DateTime: <input type="datetime"><br>
+DateTime-Local: <input type="datetime-local"><br>
+Date: <input type="date"><br>
+Week: <input type="week"><br>
+Month: <input type="month"><br>
+</form>
+<script src="../components/jquery/jquery-2.1.1.js"></script>
+<script src="../jCanUse.js"></script>
+<script>
+$(function() {
+var a = ['inputDate','inputDateTime','inputTime','elmDatalist',
+        'elmPicture','attrSrcset','PNGIcon','attrDownload'];
+a.forEach(function (v) {
+	$("#message").ifCanUse(v).append('You can use '+v+'<br>');
+});
+
+$('input[type="time"]').ifCanUse('inputTime').val('23:41:12');
+$('input[type="time"]').ifCanNotUse('inputTime').css('background-color','red');
+$('input[type="date"]').ifCanUse('inputDate').val('2015-12-22');
+if($.canUse('jsFile'))
+	$('form').append('<input type="file">');
+});
+</script>
+</body>
+</html>
